@@ -4,19 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="mobile-web-app-capable" content="yes">
     <title>KraickList - Find Your Needs Here</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 
 <body>
-    <div>
-        <form id="form" autocomplete="off">
-            <input type="text" id="query" name="query">
-            <button type="submit">Search</button>
-        </form>
-    </div>
-    <div>
-        <ul id="resultList"></ul>
+    <div id="container" class="container height-30 mx-auto">
+        <div class="m-2">
+            <form id="form" autocomplete="off">
+                <div class="bg-white shadow p-4 flex">
+                    <span class="w-auto flex justify-end items-center text-gray-500 p-2">
+                        <i class="material-icons text-3xl">search</i>
+                    </span>
+                    <input class="w-full rounded p-2" type="text" id="query" name="query" onfocus="Controller.focusSearch()" placeholder="Try 'iPhone'">
+                    <button type="submit" class="bg-red-400 hover:bg-red-300 rounded text-white p-2 pl-4 pr-4">
+                        <p class="font-semibold text-xs">Search</p>
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="m-2">
+            <ul id="resultList"></ul>
+        </div>
     </div>
     <script>
         const Controller = {
@@ -37,6 +49,7 @@
             updateList: (results) => {
                 const rows = [];
                 for (let result of results) {
+                    console.log(result);
                     rows.push(
                         `
                             <li>
@@ -50,11 +63,24 @@
                 }
                 resultList.innerHTML = rows.join(" ");
             },
+
+            focusSearch: () => {
+                console.log('search');
+                document.getElementById("container").classList.remove("height-30");
+            }
         };
 
         const form = document.getElementById("form");
         form.addEventListener("submit", Controller.search);
     </script>
+    <style>
+        .container{
+            max-width: 600px;
+        }
+        .height-30{
+            margin-top: 100px;
+        }
+    </style>
 </body>
 
 </html>

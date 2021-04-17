@@ -1,0 +1,9 @@
+version: "2"
+services:
+  golang:
+    build:
+      context: .
+    volumes:
+      - .:/root
+    ports:
+      - "3001:3001"
