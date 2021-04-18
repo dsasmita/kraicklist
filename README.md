@@ -1,6 +1,6 @@
 # KraickList
 
-KraickList, is a portal to serve you to find whatever product they want with seamless search engine.
+KraickList, is a portal to serve you to find whatever product you want with seamless search engine.
 
 ## Installation
 
