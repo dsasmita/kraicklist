@@ -35,7 +35,7 @@
             </form>
         </div>
         <div class="m-2">
-            <ul id="resultList"></ul>
+            <div id="resultList"></div>
         </div>
     </div>
     <script>
@@ -57,15 +57,25 @@
             updateList: (results) => {
                 const rows = [];
                 for (let result of results) {
-                    console.log(result);
+                    let tags = result.tags.join()
                     rows.push(
                         `
-                            <li>
-                                <div>
-                                    <p>${result.title}</p>
-                                    <p>${result.content}</p>
-                                </div>
-                            </li>
+                        <div class="md:p-8 p-2 bg-white mb-3 shadow-xl">
+                            <!--Banner image-->
+                            <img class="rounded-lg w-full"src="${result.image_urls[0]}"/>
+                            <!--Tag-->
+                            <p class="text-indigo-500 font-semibold text-base mt-2">${tags}</p>
+                            <!--Title-->
+                            <h1 class="font-semibold text-gray-900 leading-none text-xl mt-1 capitalize truncate">
+                                ${result.title}
+                            </h1>
+                            <!--Description-->
+                            <div class="max-w-full">
+                                <p class="text-base font-medium tracking-wide text-gray-600 mt-1">
+                                    ${result.content}
+                                </p>
+                            </div>
+                        </div>
                         `
                     );
                 }
@@ -73,7 +83,6 @@
             },
 
             focusSearch: () => {
-                console.log('search');
                 document.getElementById("container").classList.remove("height-30");
             }
         };

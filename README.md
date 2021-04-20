@@ -19,6 +19,12 @@ make setup
 
 - after that can check [http://127.0.0.1:3001/](http://127.0.0.1:3001/)
 
+## Run unit test
+
+```bash
+make test
+```
+
 ## Destroying container
 
 ```bash
