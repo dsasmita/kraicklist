@@ -5,5 +5,8 @@ setup:
 build:
 	docker-compose build
 
+test:
+	go test -v ./...
+
 destroy:
 	docker-compose down

@@ -9,12 +9,12 @@ type RecordRepositoryMock struct {
 	Mock mock.Mock
 }
 
-func (repository *RecordRepositoryMock) Load(filepath string) *entity.Searcher {
+func (repository *RecordRepositoryMock) Load(filepath string) (*entity.Searcher, error) {
 	arguments := repository.Mock.Called(filepath)
 	if arguments.Get(0) == nil {
-		return nil
+		return nil, nil
 	} else {
 		result := arguments.Get(0).(entity.Searcher)
-		return &result
+		return &result, nil
 	}
 }

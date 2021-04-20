@@ -27,9 +27,18 @@ func (s *RecordService) Search(query string) ([]entity.Record, error) {
 		log.Fatal(err)
 	}
 	for _, record := range records.Records {
-		if strings.Contains(record.Title, query) || strings.Contains(record.Content, query) {
-			result = append(result, record)
+		result_search, status_search := searchCompare(query, record)
+		if status_search {
+			result = append(result, result_search)
 		}
 	}
 	return result, nil
+}
+
+func searchCompare(query string, record entity.Record) (entity.Record, bool) {
+	if strings.Contains(strings.ToLower(record.Title), strings.ToLower(query)) || strings.Contains(strings.ToLower(record.Content), strings.ToLower(query)) {
+		return record, true
+	} else {
+		return record, false
+	}
 }
